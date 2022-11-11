@@ -1,189 +1,114 @@
-object DM: TDM
+object UrForm: TUrForm
+  Left = 235
+  Top = 374
+  Width = 935
+  Height = 599
+  HorzScrollBar.Position = 301
+  Align = alClient
+  Caption = #1070#1088#1080#1076#1080#1095#1077#1089#1082#1080#1077' '#1083#1080#1094#1072
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  FormStyle = fsMDIChild
   OldCreateOrder = False
-  Left = 335
-  Top = 268
-  Height = 373
-  Width = 484
-  object TABL_FIZIC: TIBTable
-    Database = IBDatabase1
-    Transaction = TransactionFiz
-    Active = True
-    FieldDefs = <
+  Position = poDefault
+  Visible = True
+  OnActivate = FormActivate
+  OnClose = FormClose
+  PixelsPerInch = 96
+  TextHeight = 13
+  object btnZakritUR: TButton
+    Left = 799
+    Top = 10
+    Width = 120
+    Height = 18
+    Caption = #1047#1072#1082#1088#1099#1090#1100
+    TabOrder = 0
+    OnClick = btnZakritURClick
+  end
+  object DBGrid2URFORM: TDBGrid
+    Left = -296
+    Top = 30
+    Width = 1000
+    Height = 800
+    Align = alCustom
+    DataSource = MainForm.DataSourceUR
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
       item
-        Name = 'ID_FIZIC'
-        Attributes = [faRequired]
-        DataType = ftInteger
+        Expanded = False
+        FieldName = 'ID_UR'
+        Title.Caption = 'ID'
+        Visible = True
       end
       item
-        Name = 'FIO'
-        DataType = ftString
-        Size = 25
+        Expanded = False
+        FieldName = 'NAME_L'
+        Title.Caption = #1055#1086#1083#1085#1086#1077' '#1085#1072#1079#1074#1072#1085#1080#1077
+        Width = 80
+        Visible = True
       end
       item
-        Name = 'DATE_BIRTH'
-        Attributes = [faRequired]
-        DataType = ftString
-        Size = 10
+        Expanded = False
+        FieldName = 'NAME_S'
+        Title.Caption = #1057#1086#1082#1088'.'#1085#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
+        Width = 80
+        Visible = True
       end
       item
-        Name = 'NUMBER_PERSONAL'
-        DataType = ftInteger
+        Expanded = False
+        FieldName = 'OGRN'
+        Title.Caption = #1054#1043#1056#1053
+        Width = 80
+        Visible = True
       end
       item
-        Name = 'INN'
-        DataType = ftInteger
+        Expanded = False
+        FieldName = 'INN'
+        Title.Caption = #1048#1053#1053
+        Width = 80
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'KPP'
+        Title.Caption = #1050#1055#1055
+        Width = 80
+        Visible = True
       end>
-    IndexDefs = <
-      item
-        Name = 'PK_FIZIC'
-        Fields = 'ID_FIZIC'
-        Options = [ixUnique]
-      end>
-    StoreDefs = True
-    TableName = 'FIZIC'
-    Left = 112
+  end
+  object DBNavigator2URFORM: TDBNavigator
+    Left = -296
+    Top = 10
+    Width = 500
+    Height = 18
+    DataSource = MainForm.DataSourceUR
+    TabOrder = 2
+  end
+  object btnDobavitZapis: TButton
+    Left = 800
     Top = 48
+    Width = 120
+    Height = 18
+    Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1079#1072#1087#1080#1089#1100
+    TabOrder = 3
+    OnClick = btnDobavitZapisClick
   end
-  object IBDatabase1: TIBDatabase
-    Connected = True
-    DatabaseName = 'C:\Users\gleb\Desktop\testProj\DB'
-    Params.Strings = (
-      'user_name=SYSDBA'
-      'password=masterkey')
-    LoginPrompt = False
-    DefaultTransaction = TransactionFiz
-    Left = 168
-    Top = 64
-  end
-  object TransactionFiz: TIBTransaction
-    Active = True
-    DefaultDatabase = IBDatabase1
-    Left = 120
-    Top = 128
-  end
-  object DSFIZIC: TDataSource
-    DataSet = TABL_FIZIC
-    Left = 208
-    Top = 144
-  end
-  object TransactionUR: TIBTransaction
-    Active = True
-    DefaultDatabase = IBDatabase1
-    Left = 312
-    Top = 96
-  end
-  object TableUR: TIBTable
-    Database = IBDatabase1
-    Transaction = TransactionUR
-    Active = True
-    FieldDefs = <
-      item
-        Name = 'ID_URIC'
-        Attributes = [faRequired]
-        DataType = ftInteger
-      end
-      item
-        Name = 'NAME_LONG'
-        Attributes = [faRequired]
-        DataType = ftString
-        Size = 15
-      end
-      item
-        Name = 'NAME_SHORT'
-        DataType = ftString
-        Size = 10
-      end
-      item
-        Name = 'OGRN'
-        DataType = ftInteger
-      end
-      item
-        Name = 'INN'
-        Attributes = [faRequired]
-        DataType = ftInteger
-      end
-      item
-        Name = 'KPP'
-        DataType = ftInteger
-      end>
-    IndexDefs = <
-      item
-        Name = 'PK_URIC'
-        Fields = 'ID_URIC'
-        Options = [ixUnique]
-      end>
-    StoreDefs = True
-    TableName = 'URIC'
-    Left = 368
-    Top = 112
-  end
-  object ITransactionSOTRUD: TIBTransaction
-    Active = True
-    DefaultDatabase = IBDatabase1
-    Left = 320
-    Top = 192
-  end
-  object TABLESOTRUD: TIBTable
-    Database = IBDatabase1
-    Transaction = ITransactionSOTRUD
-    Active = True
-    FieldDefs = <
-      item
-        Name = 'ID_SOTRUD'
-        Attributes = [faRequired]
-        DataType = ftInteger
-      end
-      item
-        Name = 'ID_URIC'
-        DataType = ftInteger
-      end
-      item
-        Name = 'ID_FIZIC'
-        DataType = ftInteger
-      end
-      item
-        Name = 'DATE_WORK_START'
-        Attributes = [faRequired]
-        DataType = ftString
-        Size = 10
-      end
-      item
-        Name = 'DATE_WORK_END'
-        DataType = ftString
-        Size = 10
-      end
-      item
-        Name = 'NUMBER_WORK'
-        DataType = ftInteger
-      end>
-    IndexDefs = <
-      item
-        Name = 'PK_SOTRUD'
-        Fields = 'ID_SOTRUD'
-        Options = [ixUnique]
-      end
-      item
-        Name = 'FK_SOTRUD_1'
-        Fields = 'ID_FIZIC'
-      end
-      item
-        Name = 'FK_SOTRUD_2'
-        Fields = 'ID_URIC'
-      end>
-    MasterSource = DATASETUR
-    StoreDefs = True
-    TableName = 'SOTRUD'
-    Left = 336
-    Top = 256
-  end
-  object DATASETUR: TDataSource
-    DataSet = TableUR
-    Left = 376
-    Top = 64
-  end
-  object DATASETSOTR: TDataSource
-    DataSet = TABLESOTRUD
-    Left = 408
-    Top = 224
+  object btnUdalitZapis: TButton
+    Left = 800
+    Top = 80
+    Width = 120
+    Height = 18
+    Caption = #1059#1076#1072#1083#1080#1090#1100' '#1079#1072#1087#1080#1089#1100
+    TabOrder = 4
+    OnClick = btnUdalitZapisClick
   end
 end

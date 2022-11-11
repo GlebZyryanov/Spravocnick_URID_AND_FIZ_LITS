@@ -1,21 +1,20 @@
-unit Unit2;
+unit Unit5;
 
 interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls, DBCtrls, Grids, DBGrids;
+  Dialogs, Grids, DBGrids, StdCtrls;
 
 type
-  TSotrudForm = class(TForm)
-    DBNavigator1: TDBNavigator;
+  TDoljnostiForm = class(TForm)
+    DBGridFormDolj: TDBGrid;
     btnZakrit: TButton;
     btnDobavitZapis: TButton;
     btnUdalitZapis: TButton;
-    DBGridSOTRUD: TDBGrid;
+    procedure btnZakritClick(Sender: TObject);
     procedure btnDobavitZapisClick(Sender: TObject);
     procedure btnUdalitZapisClick(Sender: TObject);
-    procedure btnZakritClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -23,32 +22,32 @@ type
   end;
 
 var
-  SotrudForm: TSotrudForm;
+  DoljnostiForm: TDoljnostiForm;
 
 implementation
-uses Unit1,Unit3,Unit4;
+  uses Unit1,Unit2,Unit3,Unit4;
 {$R *.dfm}
 
-procedure TSotrudForm.btnDobavitZapisClick(Sender: TObject);
+procedure TDoljnostiForm.btnZakritClick(Sender: TObject);
 begin
-MainForm.IBTableSotrud.Append;
-DBGridSOTRUD.SetFocus;
+  Close;
 end;
 
-procedure TSotrudForm.btnUdalitZapisClick(Sender: TObject);
+procedure TDoljnostiForm.btnDobavitZapisClick(Sender: TObject);
 begin
-  if DBGridSOTRUD.DataSource.DataSet.RecordCount<>0 then
+  MainForm.IBTableDoljnost.Append;
+DBGridFormDolj.SetFocus;
+end;
+
+procedure TDoljnostiForm.btnUdalitZapisClick(Sender: TObject);
+begin
+if DBGridFormDolj.DataSource.DataSet.RecordCount<>0 then
     begin
       if(MessageBox(Handle, 'Удаление записей может привести к нарушению базы данных.Продолжить?','Внимание',MB_YESNO)=IDYES)then
-        MainForm.IBTableSotrud.Delete;
+        MainForm.IBTableDoljnost.Delete;
 
     end
     else ShowMessage('Нет записей');
-end;
-
-procedure TSotrudForm.btnZakritClick(Sender: TObject);
-begin
-Close;
 end;
 
 end.
