@@ -4,19 +4,21 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ExtCtrls, DBCtrls, Grids, DBGrids, Unit4, StdCtrls;
+  Dialogs, StdCtrls, Grids, DBGrids, ExtCtrls, DBCtrls;
 
 type
-  TUrForm = class(TForm)
-    urformbnt_VIEWSOTRUD: TButton;
+  TFizicForm = class(TForm)
     DBGrid1: TDBGrid;
+    btnZakritFiz: TButton;
     DBNavigator1: TDBNavigator;
-    RedactUrFormbtn1: TButton;
-    NazadUrFormbtn2: TButton;
-    procedure urformbnt_VIEWSOTRUDClick(Sender: TObject);
-    procedure RedactUrFormbtn1Click(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-    procedure NazadUrFormbtn2Click(Sender: TObject);
+    btnDobavitZapis: TButton;
+    btnUdalitZapis: TButton;
+    procedure btnZakritFizClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnDobavitZapisClick(Sender: TObject);
+    procedure btnUdalitZapisClick(Sender: TObject);
+    
   private
     { Private declarations }
   public
@@ -24,35 +26,47 @@ type
   end;
 
 var
-  UrForm: TUrForm;
+  FizicForm: TFizicForm;
 
 implementation
-
-uses Unit7;
-
+ uses Unit1,Unit2,Unit4;
 {$R *.dfm}
 
-procedure TUrForm.urformbnt_VIEWSOTRUDClick(Sender: TObject);
+
+
+procedure TFizicForm.btnZakritFizClick(Sender: TObject);
 begin
-  FormSotrudniki.Show;
+//Закрыть форму
+Close;
 end;
 
-procedure TUrForm.RedactUrFormbtn1Click(Sender: TObject);
+procedure TFizicForm.FormActivate(Sender: TObject);
 begin
-  DBNavigator1.Visible:=True;
-  DBGrid1.ReadOnly:=False;
+//установка фокуса при активации формы
+DBGrid1.SetFocus;
 end;
 
-procedure TUrForm.FormCreate(Sender: TObject);
+procedure TFizicForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  DBNavigator1.Visible:=False;
-  DBGrid1.ReadOnly:=True;
+//закрытие формы
+Action:=caFree;
 end;
 
-procedure TUrForm.NazadUrFormbtn2Click(Sender: TObject);
+procedure TFizicForm.btnDobavitZapisClick(Sender: TObject);
 begin
-  DBNavigator1.Visible:=False;
-  DBGrid1.ReadOnly:=True
+MainForm.IBTableFiz.Append;
+DBGrid1.SetFocus
+end;
+
+procedure TFizicForm.btnUdalitZapisClick(Sender: TObject);
+begin
+  if DBGrid1.DataSource.DataSet.RecordCount<>0 then
+    begin
+      if(MessageBox(Handle, 'Удаление записей может привести к нарушению базы данных.Продолжить?','Внимание',MB_YESNO)=IDYES)then
+        MainForm.IBTableFiz.Delete;
+
+    end
+    else ShowMessage('Нет записей');
 end;
 
 end.

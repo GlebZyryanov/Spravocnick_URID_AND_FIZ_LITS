@@ -1,32 +1,65 @@
-object FizForm: TFizForm
-  Left = 367
-  Top = 361
-  Width = 539
-  Height = 301
-  Anchors = [akLeft, akTop, akRight, akBottom]
-  Caption = #1060#1080#1079#1080#1095#1077#1089#1082#1080#1077' '#1083#1080#1094#1072
+object SotrudForm: TSotrudForm
+  Left = 272
+  Top = 386
+  Width = 970
+  Height = 607
+  HorzScrollBar.Position = 283
+  Align = alClient
+  Caption = #1057#1086#1090#1088#1091#1076#1085#1080#1082#1080
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  FormStyle = fsMDIChild
   OldCreateOrder = False
-  OnCreate = FormCreate
-  DesignSize = (
-    523
-    263)
+  Position = poDefault
+  Visible = True
   PixelsPerInch = 96
   TextHeight = 13
-  object DBGrid1: TDBGrid
-    Left = 0
-    Top = 35
-    Width = 516
-    Height = 107
-    Anchors = [akLeft, akTop, akRight, akBottom]
-    DataSource = DM.DSFIZIC
-    ReadOnly = True
+  object DBNavigator1: TDBNavigator
+    Left = -278
+    Top = 10
+    Width = 500
+    Height = 18
+    DataSource = MainForm.DataSourceSOTRUD
     TabOrder = 0
+  end
+  object btnZakrit: TButton
+    Left = 817
+    Top = 10
+    Width = 120
+    Height = 18
+    Caption = #1047#1072#1082#1088#1099#1090#1100
+    TabOrder = 1
+    OnClick = btnZakritClick
+  end
+  object btnDobavitZapis: TButton
+    Left = 817
+    Top = 48
+    Width = 120
+    Height = 18
+    Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1079#1072#1087#1080#1089#1100
+    TabOrder = 2
+    OnClick = btnDobavitZapisClick
+  end
+  object btnUdalitZapis: TButton
+    Left = 817
+    Top = 80
+    Width = 120
+    Height = 18
+    Caption = #1059#1076#1072#1083#1080#1090#1100' '#1079#1072#1087#1080#1089#1100
+    TabOrder = 3
+    OnClick = btnUdalitZapisClick
+  end
+  object DBGridSOTRUD: TDBGrid
+    Left = -278
+    Top = 30
+    Width = 1000
+    Height = 800
+    DataSource = MainForm.DataSourceSOTRUD
+    TabOrder = 4
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -35,60 +68,38 @@ object FizForm: TFizForm
     Columns = <
       item
         Expanded = False
-        FieldName = 'ID_FIZIC'
-        Title.Caption = 'ID'
+        FieldName = 'ID_SOTR'
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'FIO'
-        Title.Caption = #1060#1048#1054
+        FieldName = 'ur'
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'DATE_BIRTH'
-        Title.Caption = #1044#1040#1058#1040' '#1056#1054#1046#1044#1045#1053#1048#1071
+        FieldName = 'fiz'
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'NUMBER_PERSONAL'
-        Title.Caption = #1053#1054#1052#1045#1056' '#1058#1045#1051#1045#1060#1054#1053#1040'L'
+        FieldName = 'dolj'
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'INN'
-        Title.Caption = #1048#1053#1053
+        FieldName = 'DATE_WORK_START'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DATE_WORK_END'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'WORKPHONE_NUMBER'
         Visible = True
       end>
-  end
-  object DBNavigator1: TDBNavigator
-    Left = 0
-    Top = 10
-    Width = 240
-    Height = 18
-    DataSource = DM.DSFIZIC
-    TabOrder = 1
-    Visible = False
-  end
-  object RedactbtnFizForm: TButton
-    Left = 250
-    Top = 10
-    Width = 91
-    Height = 18
-    Caption = #1056#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1090#1100
-    TabOrder = 2
-    OnClick = RedactbtnFizFormClick
-  end
-  object NazadbtnFizForm: TButton
-    Left = 350
-    Top = 10
-    Width = 139
-    Height = 18
-    Caption = #1054#1090#1084#1077#1085#1072' '#1088#1077#1076#1072#1082#1090#1080#1088#1086#1074#1072#1085#1080#1103
-    TabOrder = 3
-    OnClick = NazadbtnFizFormClick
   end
 end
